@@ -50,7 +50,7 @@
               <div class="w-100 d-flex justify-content-end">
                 <button
                   type="button"
-                  onclick="location.assign('${root}/board/getALlPost')"
+                  onclick="location.assign('${root}/board/getAllPost')"
                   class="border-0 py-2 px-3 me-3 mb-3 rounded-2 text-dark fw-bold"
                   style="width: max-content"
                 >
