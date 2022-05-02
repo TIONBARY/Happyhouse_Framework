@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,11 @@ public class HouseController {
 
 	@Autowired
 	HouseDealService houseDealService;
+	
+	@GetMapping("")
+	public ModelAndView mvSearchPage() throws Exception {
+		return new ModelAndView("search");
+	}
 	
 	@PostMapping("searchByDong")
 	public String search(@RequestParam String code, @RequestParam String period, @RequestParam String dong) throws Exception{

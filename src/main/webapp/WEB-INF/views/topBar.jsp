@@ -14,7 +14,7 @@
   <div class="justify-content-end">
     <ul class="navbar-nav d-flex flex-row me-auto">
       <li class="nav-item px-3">
-        <a class="nav-link" href="${root}/search1">실거래가 조회</a>
+        <a class="nav-link" href="${root}/search">실거래가 조회</a>
       </li>
       <li class="nav-item px-3">
         <a class="nav-link" href="${root}/board/getAllPost">공지사항</a>
