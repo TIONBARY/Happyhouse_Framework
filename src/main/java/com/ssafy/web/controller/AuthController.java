@@ -124,7 +124,7 @@ public class AuthController {
 			
 			int cnt = userService.updateUser(newUserDto);
 			
-			ModelAndView mav = new ModelAndView("mypage");
+			ModelAndView mav = new ModelAndView("auth/mypage");
 			if (cnt == 1) {
 				session.setAttribute("currentUser", newUserDto);
 				mav.addObject("ok", true);
