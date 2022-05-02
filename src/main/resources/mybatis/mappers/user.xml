@@ -15,7 +15,7 @@
    		</insert>
    		
    		<select id="login" resultType="userDTO">
-   			select name, email, phone from user where id=#{id} and password=#{password}
+   			select * from user where id=#{id} and password=#{password}
    		</select>
    		
    		<update id="updateUser">
