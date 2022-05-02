@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  	<link rel="stylesheet" href="./css/style.css" />
+  	<link rel="stylesheet" href="../css/style.css" />
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-	<script src="./js/account.js"></script>
+	<script src="../js/account.js"></script>
   </head>
   <body>
     <div class="px-0">
