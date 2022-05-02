@@ -49,7 +49,7 @@
 
                 <button
                   id="updatePost"
-                  onclick="location.replace('${root}/board/mvupdatePost?no=${postDto.getNo() }')"
+                  onclick="location.replace('${root}/board/updatePost/${postDto.getNo() }')"
                   class="border-0 mb-3 px-3 py-2 rounded-2 text-light fw-bold"
                   style="background-color: #86c232; width: max-content"
                 >

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,8 +50,8 @@ public class BoardController {
 		return selectAll();
 	}
 	
-	@GetMapping("getPost")
-	public ModelAndView getPost(@RequestParam int no) throws Exception{
+	@GetMapping("getPost/{no}")
+	public ModelAndView getPost(@PathVariable("no") int no) throws Exception{
 		ModelAndView mav = new ModelAndView("board/post");
 		BoardDTO boardDTO = boardService.getPost(no);
 		boardDTO.setViews(boardDTO.getViews() + 1);
@@ -81,7 +82,7 @@ public class BoardController {
 		return selectAll();
 	}
 	
-	@GetMapping("mvcreatePost")
+	@GetMapping("createPost")
 	public ModelAndView mvCreatePost(HttpSession session) throws Exception{
 		UserDTO userDTO = (UserDTO)session.getAttribute("currentUser");
 		if (userDTO == null) {
@@ -90,8 +91,8 @@ public class BoardController {
 		return new ModelAndView("redirect:/board/addPost");
 	}
 	
-	@GetMapping("mvupdatePost")
-	public ModelAndView mvUpdatePost(@RequestParam int no, HttpSession session) throws Exception{
+	@GetMapping("updatePost/{no}")
+	public ModelAndView mvUpdatePost(@PathVariable("no") int no, HttpSession session) throws Exception{
 		UserDTO userDTO = (UserDTO)session.getAttribute("currentUser");
 		if (userDTO == null) {
 			return new ModelAndView("redirect:/auth/login");

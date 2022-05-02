@@ -36,7 +36,7 @@
 
             
           	<c:forEach var="post" items="${postList}">
-          	  <tr onclick="location.assign('${root}/board/getPost?no=${post.getNo() }')">
+          	  <tr onclick="location.assign('${root}/board/getPost/${post.getNo() }')">
                 <td>${post.getNo()}</td>
                 <td>${post.getSubject()}</td>
                 <td>${post.getUserid() }</td>
@@ -52,7 +52,7 @@
           <!-- 글쓰기 -->
           <div class="d-flex justify-content-end mb-2">
             <button
-              onclick="location.assign('${root}/board/mvcreatePost')"
+              onclick="location.assign('${root}/board/createPost')"
               class="px-3 py-2 border-0 rounded-3 text-light fw-bold"
               style="background-color: #86c232"
             >
