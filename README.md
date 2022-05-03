@@ -35,9 +35,9 @@
 <br>
 
 - Controller
-  - AuthServlet.java
-  - [BoardServlet.java](src/web/controller/BoardServlet.java)
-  - [HouseServlet.java](src/web/controller/HouseServlet.java)
+  - [AuthServlet.java](src/main/java/com/ssafy/web/controller/AuthServlet.java)
+  - [BoardServlet.java](src/main/java/com/ssafy/web/controller/BoardServlet.java)
+  - [HouseServlet.java](src/main/java/com/ssafy/web/controller/HouseServlet.java)
 - Service
 
   - [HouseService.java](./src/web/service/HouseService.java)
