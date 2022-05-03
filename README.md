@@ -35,29 +35,25 @@
 <br>
 
 - Controller
+
   - [AuthController.java](src/main/java/com/ssafy/web/controller/AuthController.java)
   - [BoardController.java](src/main/java/com/ssafy/web/controller/BoardController.java)
   - [HouseController.java](src/main/java/com/ssafy/web/controller/HouseController.java)
 - Service
 
-  - [HouseService.java](./src/web/service/HouseService.java)
-  - [HouseServiceImpl.java](./src/web/service/HouseServiceImpl.java)
-  - [PostService.java](./src/web/service/PostService.java)
-  - [PostServiceImpl.java](./src/web/service/PostServiceImpl.java)
-  - [UserService.java](./src/web/service/UserService.java)
-  - [UserServiceImpl.java](./src/web/service/UserServiceImpl.java)
+  - [BoardService.java](src/main/java/com/ssafy/web/service/BoardService.java)
+  - [HouseDealService.java](src/main/java/com/ssafy/web/service/HouseDealService.java)
+  - [UserService.java](src/main/java/com/ssafy/web/service/UserService.java)
 
 - DAO
 
-  - [PostDao.java](./src/web/dao/PostDao.java)
-  - [PostDaoImpl.java](./src/web/dao/PostDaoImpl.java)
-  - [UserDao.java](./src/web/dao/UserDao.java)
-  - [UserDaoImpl.java](./src/web/dao/UserDaoImpl.java)
+  - [BoardDAO.java](src/main/java/com/ssafy/web/dao/BoardDAO.java)
+  - [UserDAO.java](src/main/java/com/ssafy/web/dao/UserDAO.java)
 
 - DTO
-  - [UserDto.java](./src/web/model/UserDto.java)
-  - [PostDto.java](./src/web/model/PostDto.java)
-  - [HouseDealDto.java](./src/web/model/HouseDealDto.java)
+  - [BoardDTO.java](src/main/java/com/ssafy/web/dto/BoardDTO.java)
+  - [UserDTO.java](src/main/java/com/ssafy/web/dto/UserDTO.java)
+  - [HouseDealDTO.java](src/main/java/com/ssafy/web/dto/HouseDealDTO.java)
 
 <br>
 
@@ -65,7 +61,7 @@
 
 ### 1. 메인 페이지
 
-#### 첫 화면: [index.jsp](./WebContent/index.jsp)
+#### 첫 화면: [index.jsp](src/main/webapp/WEB-INF/views/index.jsp)
 
 ![image_info](./img/메인_페이지.png)
 
@@ -73,7 +69,7 @@
 
 ### 2. 실거래가 검색/조회
 
-#### 초기 화면: [search.jsp](./WebContent/search.jsp)
+#### 초기 화면: [search.jsp](src/main/webapp/WEB-INF/views/search.jsp)
 
 ![image_info](./img/HouseDeal/초기화면.png)
 
@@ -185,14 +181,14 @@
 
 <br>
 
-#### 글 작성 화면 : [addPost.jsp](./WebContent/board/addPost.jsp)
+#### 글 작성 화면 : [addPost.jsp](src/main/webapp/WEB-INF/views/board/addPost.jsp)
 
 ![image_info](./img/board/글 작성 중.png)
 
 
 <br>
 
-#### 몇 개 글 작성 이후 : [postList.jsp](./WebContent/board/postList.jsp)
+#### 몇 개 글 작성 이후 : [postList.jsp](src/main/webapp/WEB-INF/views/board/postList.jsp)
 
 ![image_info](./img/board/글 작성.png)
 
@@ -204,7 +200,7 @@
 
 <br>
 
-#### 글 수정 : [updatePost.jsp](./WebContent/board/updatePost.jsp)
+#### 글 수정 : [updatePost.jsp](src/main/webapp/WEB-INF/views/board/updatePost.jsp)
 
 ![image_info](./img/board/글 수정.png)
 
@@ -216,7 +212,7 @@
 
 <br>
 
-#### 글 수정이 반영된 상세 화면 : [post.jsp](./WebContent/board/post.jsp)
+#### 글 수정이 반영된 상세 화면 : [post.jsp](src/main/webapp/WEB-INF/views/board/post.jsp)
 
 ![image_info](./img/board/수정 반영2.png)
 
