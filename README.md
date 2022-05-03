@@ -1,4 +1,4 @@
-# HappyHouse: 권덕주, 조혜은
+# HappyHouse: 권덕주, 김시언
 
 ## 구현 여부
 
