@@ -61,7 +61,7 @@
 
 #### 첫 화면: [index.jsp](./WebContent/index.jsp)
 
-![image_info](./img/메인 페이지.png)
+![image_info](./img/메인_페이지.png)
 
 <br>
 
