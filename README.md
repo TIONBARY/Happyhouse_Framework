@@ -14,6 +14,12 @@
 
 <br>
 
+### 보완 사항
+
+
+
+<br>
+
 ### UseCase Diagram
 
 <img src="./img/happyhouse_usecase_diagram.png" />
