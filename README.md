@@ -35,7 +35,7 @@
 <br>
 
 - Controller
-  - [AuthServlet.java](src/web/controller/AuthServlet.java)
+  - AuthServlet.java
   - [BoardServlet.java](src/web/controller/BoardServlet.java)
   - [HouseServlet.java](src/web/controller/HouseServlet.java)
 - Service
