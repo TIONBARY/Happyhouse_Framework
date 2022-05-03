@@ -1,5 +1,6 @@
 # HappyHouse: 권덕주, 김시언
 
+
 ## 구현 여부
 
 ### 요구 사항
@@ -17,14 +18,6 @@
 ### UseCase Diagram
 
 <img src="./img/happyhouse_usecase_diagram.png" />
-
-<br>
-
-### Class Diagram
-
-<img src="./img/happyhouse_class_diagram_1.png" />
-
-<img src="./img/happyhouse_class_diagram_2.png" />
 
 <br>
 
