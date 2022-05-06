@@ -1,5 +1,6 @@
 package com.ssafy.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ssafy.web.dto.LoginHistoryDTO;
 import com.ssafy.web.dto.UserDTO;
+import com.ssafy.web.service.LoginHistoryService;
 import com.ssafy.web.service.UserService;
 
 @Controller
@@ -20,6 +23,9 @@ public class AuthController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	LoginHistoryService loginHistoryService;
 	
 	@GetMapping("register")
 	public ModelAndView getRegisterPage() throws Exception {
@@ -66,17 +72,34 @@ public class AuthController {
 	public ModelAndView login(@RequestParam String id,
 			@RequestParam String pwd,
 			HttpSession session,
-			RedirectAttributes ra) throws Exception{
+			RedirectAttributes ra,
+			HttpServletRequest request) throws Exception{
+		
+		String ip = request.getRemoteAddr();
+		LoginHistoryDTO loginHistoryDTO = loginHistoryService.getHistory(ip);
+		int loginCount = loginHistoryDTO.getRetryCount();
+		if (loginCount >= 14) {
+			ra.addFlashAttribute("ok", false);
+			ra.addFlashAttribute("msg", "로그인 시도 회수 제한을 초과하여 접근이 제한되었습니다 관리자에 문의하세요.");
+			ModelAndView mav = new ModelAndView("redirect:/auth/login");
+			return mav;
+		}
+		else {
+			loginHistoryDTO.setRetryCount(loginCount + 1);
+		}
+		
 		
 		UserDTO userDto = userService.login(id, pwd);
 		
 		if (userDto != null) {
+			loginHistoryService.cleanHistory(ip);
 			ra.addFlashAttribute("ok", true);
 			ra.addFlashAttribute("msg", "로그인 성공");
 			ModelAndView mav = new ModelAndView("redirect:/");
 			session.setAttribute("currentUser", userDto);
 			return mav;
 		}else {
+			loginHistoryService.updateHistory(loginHistoryDTO);
 			ra.addFlashAttribute("ok", false);
 			ra.addFlashAttribute("msg", "잘못된 아이디 혹은 비밀번호입니다.");
 			ModelAndView mav = new ModelAndView("redirect:/auth/login");

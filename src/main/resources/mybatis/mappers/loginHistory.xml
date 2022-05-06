@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    <mapper namespace="com.ssafy.web.dao.LoginHistoryDAO">
+   		<select id="getHistory" resultType="LoginHistoryDTO">
+   			select * from loginHistory where ip=#{ip}
+   		</select>
+   		<insert id="insertHistory">
+			insert into loginHistory (ip, retryCount) VALUES (#{ip}, #{retryCount})
+   		</insert>
+   		<update id="updateHistory">
+   			update loginHistory set retryCount=#{retryCount} where ip=#{ip}
+   		</update>
+   		
+   	</mapper>	
+
+    
