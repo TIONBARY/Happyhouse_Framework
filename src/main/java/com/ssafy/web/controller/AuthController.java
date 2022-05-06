@@ -92,7 +92,7 @@ public class AuthController {
 		UserDTO userDto = userService.login(id, pwd);
 		
 		if (userDto != null) {
-			loginHistoryService.cleanHistory(ip);
+			loginHistoryService.cleanHistory(loginHistoryDTO);
 			ra.addFlashAttribute("ok", true);
 			ra.addFlashAttribute("msg", "로그인 성공");
 			ModelAndView mav = new ModelAndView("redirect:/");

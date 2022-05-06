@@ -27,8 +27,8 @@ public class LoginHistoryService {
 		loginHistoryDAO.updateHistory(loginHistoryDTO);
 	}
 	
-	public void cleanHistory(String ip) throws Exception {
-		LoginHistoryDTO loginHistoryDTO = loginHistoryDAO.getHistory(ip);
+	public void cleanHistory(LoginHistoryDTO loginHistoryDTO) throws Exception {
+		loginHistoryDTO.setRetryCount(0);
 		updateHistory(loginHistoryDTO);
 	}
 }
