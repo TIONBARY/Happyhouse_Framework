@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ssafy.web.dto.UserDTO;
 import com.ssafy.web.service.UserService;
@@ -64,20 +65,21 @@ public class AuthController {
 	@PostMapping("login")
 	public ModelAndView login(@RequestParam String id,
 			@RequestParam String pwd,
-			HttpSession session) throws Exception{
+			HttpSession session,
+			RedirectAttributes ra) throws Exception{
 		
 		UserDTO userDto = userService.login(id, pwd);
 		
 		if (userDto != null) {
-			ModelAndView mav = new ModelAndView("index");
+			ra.addFlashAttribute("ok", true);
+			ra.addFlashAttribute("msg", "로그인 성공");
+			ModelAndView mav = new ModelAndView("redirect:/");
 			session.setAttribute("currentUser", userDto);
-			mav.addObject("ok", true);
-			mav.addObject("msg", "로그인 성공");
 			return mav;
 		}else {
-			ModelAndView mav = new ModelAndView("auth/login");
-			mav.addObject("ok", false);
-			mav.addObject("msg", "잘못된 아이디 혹은 비밀번호입니다.");
+			ra.addFlashAttribute("ok", false);
+			ra.addFlashAttribute("msg", "잘못된 아이디 혹은 비밀번호입니다.");
+			ModelAndView mav = new ModelAndView("redirect:/auth/login");
 			return mav;
 		}
 	}
@@ -86,7 +88,7 @@ public class AuthController {
 	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/");
 	}
 	
 	@GetMapping("mypage")
