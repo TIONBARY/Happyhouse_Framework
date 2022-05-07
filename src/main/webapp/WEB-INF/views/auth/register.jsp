@@ -50,7 +50,7 @@
               />
               <input
                 id="pwd"
-                name="pwd"
+                name="password"
                 type="password"
                 placeholder="비밀번호"
                 class="px-3 py-2 mb-3 border-1 rounded-2"

@@ -44,7 +44,7 @@
                 class="px-3 py-2 mb-3 border-1 rounded-2"
                 type="password"
                 id="pwd"
-                name="pwd"
+                name="password"
                 placeholder="비밀번호"
                 required
               />

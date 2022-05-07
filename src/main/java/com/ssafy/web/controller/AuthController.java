@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,19 +34,9 @@ public class AuthController {
 	}
 	
 	@PostMapping("register")
-	public ModelAndView register(@RequestParam String id,
-			@RequestParam String pwd,
-			@RequestParam String name,
-			@RequestParam String email,
-			@RequestParam String phone) throws Exception{
+	public ModelAndView register(@ModelAttribute UserDTO userDto) throws Exception{
 		int cnt = 0;
-		UserDTO userDto = new UserDTO();
-
-		userDto.setId(id);
-		userDto.setPassword(pwd);
-		userDto.setName(name);
-		userDto.setEmail(email);
-		userDto.setPhone(phone);
+		
 		cnt = userService.createUser(userDto);
 		
 		
@@ -70,7 +61,7 @@ public class AuthController {
 	
 	@PostMapping("login")
 	public ModelAndView login(@RequestParam String id,
-			@RequestParam String pwd,
+			@RequestParam String password,
 			HttpSession session,
 			RedirectAttributes ra,
 			HttpServletRequest request) throws Exception{
@@ -89,7 +80,7 @@ public class AuthController {
 		}
 		
 		
-		UserDTO userDto = userService.login(id, pwd);
+		UserDTO userDto = userService.login(id, password);
 		
 		if (userDto != null) {
 			loginHistoryService.cleanHistory(loginHistoryDTO);
@@ -131,21 +122,12 @@ public class AuthController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView update(@RequestParam String id,
-			@RequestParam String pwd,
-			@RequestParam String name,
-			@RequestParam String email,
-			@RequestParam String phone,
+	public ModelAndView update(@ModelAttribute UserDTO newUserDto,
 			HttpSession session) throws Exception {
+		
 		UserDTO userDto = (UserDTO) session.getAttribute("currentUser");
 		
 		if(userDto != null) {
-			UserDTO newUserDto = new UserDTO();
-			newUserDto.setId(id);
-			newUserDto.setPassword(pwd);
-			newUserDto.setName(name);
-			newUserDto.setEmail(email);
-			newUserDto.setPhone(phone);
 			
 			int cnt = userService.updateUser(newUserDto);
 			

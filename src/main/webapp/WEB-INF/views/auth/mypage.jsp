@@ -45,7 +45,7 @@
 	              <label for="pwd" style="width: 80px">비밀번호&nbsp;</label>
 	              <input
 	                id="pwd"
-	                name="pwd"
+	                name="password"
 	                size="28"
 	                type="password"
 	                class="px-2 py-1 mb-3 border-1 rounded-2"
