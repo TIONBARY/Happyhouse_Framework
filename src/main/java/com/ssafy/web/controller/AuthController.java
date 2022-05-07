@@ -101,7 +101,7 @@ public class AuthController {
 		}else {
 			loginHistoryService.updateHistory(loginHistoryDTO);
 			ra.addFlashAttribute("ok", false);
-			ra.addFlashAttribute("msg", "잘못된 아이디 혹은 비밀번호입니다.");
+			ra.addFlashAttribute("msg", "잘못된 아이디 혹은 비밀번호입니다. 현재 시도횟수는 15회 중 " + (loginCount + 1) + "회입니다.");
 			ModelAndView mav = new ModelAndView("redirect:/auth/login");
 			return mav;
 		}
