@@ -21,7 +21,7 @@
       </li>
       <c:if test="${empty currentUser}">
 	      <li id="loginNav" class="nav-item ps-3">
-	        <a class="nav-link" href="${root}/auth/mvLogin">로그인</a>
+	        <a class="nav-link" href="${root}/auth/login">로그인</a>
 	      </li>
       </c:if>      
       
@@ -33,7 +33,7 @@
 	        id="userNav"
 	        class="nav-item ps-4 pe-2 d-flex align-items-center"
 	      >
-	        <a href="${root}/auth/mvMypage">
+	        <a href="${root}/auth/mypage">
 	          <i class="fa-solid fa-circle-user h2 mb-0 text-dark"></i>
 	        </a>
 	      </li>

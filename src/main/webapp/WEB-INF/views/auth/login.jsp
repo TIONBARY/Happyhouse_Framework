@@ -67,7 +67,7 @@
               </button>
               <button
                 type="button"
-                onclick="location.href = '${root}/auth/mvRegister'"
+                onclick="location.href = '${root}/auth/register'"
                 class="flex-grow-1 border-0 py-2 mb-3 rounded-2 text-dark fw-bold"
               >
                 회원가입

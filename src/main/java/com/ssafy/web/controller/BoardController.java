@@ -35,9 +35,6 @@ public class BoardController {
 	@PostMapping("createPost")
 	public ModelAndView createPost(@RequestParam String subject, @RequestParam String content, HttpSession session) throws Exception{
 		UserDTO userDTO = (UserDTO)session.getAttribute("currentUser");
-		if (userDTO == null) {
-			return new ModelAndView("auth/login");
-		}
 		
 		String userid = userDTO.getId();
 		BoardDTO boardDTO = new BoardDTO();
@@ -84,19 +81,11 @@ public class BoardController {
 	
 	@GetMapping("createPost")
 	public ModelAndView mvCreatePost(HttpSession session) throws Exception{
-		UserDTO userDTO = (UserDTO)session.getAttribute("currentUser");
-		if (userDTO == null) {
-			return new ModelAndView("redirect:/auth/login");
-		}
 		return new ModelAndView("redirect:/board/addPost");
 	}
 	
 	@GetMapping("updatePost/{no}")
 	public ModelAndView mvUpdatePost(@PathVariable("no") int no, HttpSession session) throws Exception{
-		UserDTO userDTO = (UserDTO)session.getAttribute("currentUser");
-		if (userDTO == null) {
-			return new ModelAndView("redirect:/auth/login");
-		}
 		
 		ModelAndView mav = new ModelAndView("board/updatePost");
 		BoardDTO boardDTO = boardService.getPost(no);

@@ -29,7 +29,7 @@ public class AuthController {
 	LoginHistoryService loginHistoryService;
 	
 	@GetMapping("register")
-	public ModelAndView getRegisterPage() throws Exception {
+	public ModelAndView register() throws Exception {
 		return new ModelAndView("auth/register");
 	}
 	
@@ -55,7 +55,7 @@ public class AuthController {
 	}
 	
 	@GetMapping("login")
-	public ModelAndView getLoginPage() throws Exception {
+	public ModelAndView login() throws Exception {
 		return new ModelAndView("auth/login");
 	}
 	
@@ -106,74 +106,47 @@ public class AuthController {
 	}
 	
 	@GetMapping("mypage")
-	public ModelAndView getMyPage() throws Exception {
+	public ModelAndView getMyPage(HttpSession session) throws Exception {
+
 		return new ModelAndView("auth/mypage");
 	}
-	
-	@GetMapping("mvMypage")
-	public ModelAndView getMyPage(HttpSession session) throws Exception {
-		UserDTO userDto = (UserDTO) session.getAttribute("currentUser");
-		
-		if(userDto != null) {
-			return new ModelAndView("redirect:/auth/mypage");
-		} else {
-			return new ModelAndView("redirect:/auth/login");
-		}
-	}
+
 	
 	@PostMapping("update")
 	public ModelAndView update(@ModelAttribute UserDTO newUserDto,
 			HttpSession session) throws Exception {
 		
-		UserDTO userDto = (UserDTO) session.getAttribute("currentUser");
+		int cnt = userService.updateUser(newUserDto);
 		
-		if(userDto != null) {
-			
-			int cnt = userService.updateUser(newUserDto);
-			
-			ModelAndView mav = new ModelAndView("auth/mypage");
-			if (cnt == 1) {
-				session.setAttribute("currentUser", newUserDto);
-				mav.addObject("ok", true);
-				mav.addObject("msg", "회원 정보 수정 완료");
-			} else {
-				mav.addObject("ok", false);
-				mav.addObject("msg", "회원 정보 수정 완료 실패");
-			}
-			
-			return mav;
+		ModelAndView mav = new ModelAndView("auth/mypage");
+		if (cnt == 1) {
+			session.setAttribute("currentUser", newUserDto);
+			mav.addObject("ok", true);
+			mav.addObject("msg", "회원 정보 수정 완료");
+		} else {
+			mav.addObject("ok", false);
+			mav.addObject("msg", "회원 정보 수정 완료 실패");
 		}
 		
-		return mvLogin(session);
+		return mav;
 	}
 	
 	@GetMapping("delete")
 	public ModelAndView delete(HttpSession session) throws Exception {
 		UserDTO userDto = (UserDTO) session.getAttribute("currentUser");
 		
-		if(userDto != null) {
-			String id = userDto.getId();
-			int cnt = userService.deleteUser(id);
-			if(cnt == 1) {
-				logout(session);
-				return new ModelAndView("index");
-			} else {
-				throw new Exception("회원 탈퇴 실패");
-			}
+		String id = userDto.getId();
+		int cnt = userService.deleteUser(id);
+		if(cnt == 1) {
+			logout(session);
+			return new ModelAndView("redirect:/");
 		} else {
-			return new ModelAndView("auth/login");
+			throw new Exception("회원 탈퇴 실패");
 		}
+		
 	}
 	
-	@GetMapping("mvRegister")
-	public ModelAndView mvRegister(HttpSession session) throws Exception {
-		return new ModelAndView("redirect:/auth/register");
-	}
 	
-	@GetMapping("mvLogin")
-	public ModelAndView mvLogin(HttpSession session) throws Exception {
-		return new ModelAndView("redirect:/auth/login");
-	}
 	
 	
 }
