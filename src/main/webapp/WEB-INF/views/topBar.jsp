@@ -6,7 +6,7 @@
   <div style="width: max-content">
     <a
       id="navBrand"
-      href="../"
+      href="../../"
       class="navbar-brand fw-bolder flex-grow-1 align-middle"
       >HappyHouse</a
     >
