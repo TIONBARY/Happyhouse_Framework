@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,14 @@ public class HouseController {
 		return new ModelAndView("search");
 	}
 	
+	@CrossOrigin(origins="*", allowedHeaders="*")
 	@PostMapping("searchByDong")
 	public String search(@RequestParam String code, @RequestParam String period, @RequestParam String dong) throws Exception{
 		JSONObject json = new JSONObject();
 
-		
+		System.out.println(code);
+		System.out.println(period);
+		System.out.println(dong);
 		ArrayList<HouseDealDTO> houseDealList = new ArrayList<>();
 		try {
 			ArrayList<HouseDealDTO> list = houseDealService.getHouseDealList(code, period);
